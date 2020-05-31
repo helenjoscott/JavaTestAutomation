@@ -30,13 +30,11 @@ public class PoundChangeGame {
         noOfFifties = scanner.nextInt() * 50;
         scanner.close();
 
-        totalChange=(noOfPennies+noOfFives+noOfTens+noOfTwenties+noOfFifties);
-        System.out.println("Total change is " +totalChange);
-        if (totalChange==100)
-        {
+        totalChange = (noOfPennies + noOfFives + noOfTens + noOfTwenties + noOfFifties);
+        System.out.println("Total change is " + totalChange);
+        if (totalChange == 100) {
             System.out.println("You win!");
-        }
-        else{
+        } else {
             System.out.print("You lose :(");
         }
     }
