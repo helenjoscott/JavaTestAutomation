@@ -7,8 +7,7 @@ public class SeasonTea {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter a season");
-        String seasonOfYear = scanner.next();
+        String seasonOfYear = getString(scanner);
 
         System.out.println("Enter a number");
         int cupsOfTea = scanner.nextInt();
@@ -17,5 +16,10 @@ public class SeasonTea {
 
         scanner.close();
 
+    }
+
+    public static String getString(Scanner scanner) {
+        System.out.println("Enter a season");
+        return scanner.next();
     }
 }
