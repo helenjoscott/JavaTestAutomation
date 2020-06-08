@@ -4,76 +4,57 @@ import java.util.Scanner;
 
 public class PhoneBill {
 
-    int id;
-    double baseCost;
-    double allocatedMinutes;
-    double minutesUsed;
-    double totalBill;
+    private int id;
+    private double baseCost;
+    private double allocatedMinutes;
+    private double minutesUsed;
+    private double totalBill;
 
-    static double overagePerMinuteCost = 0.25;
-    static double tax = 0.15;
+    static double OVERAGE_PER_MIN_COST = 0.25;
+    static double OVERAGE_TAX = 0.15;
 
     Scanner scanner = new Scanner(System.in);
 
-    protected void getIdNumber (){
+    public PhoneBill() {
+    }
+
+    public PhoneBill(int id) {
+        this.id=id;
+    }
+
+    public PhoneBill(int id, int baseCost, int allocatedMinutes, int minutesUsed) {
+        this.id=id;
+        this.baseCost=baseCost;
+        this.allocatedMinutes=allocatedMinutes;
+        this.minutesUsed=minutesUsed;
+    }
+
+    public double calculatePhoneBill() {
+        var amountOver = Math.abs((allocatedMinutes - minutesUsed) * OVERAGE_TAX);
+        return baseCost + amountOver;
+
+        // System.out.println("You spent an extra "+ amountOver + " in tax, due to being " + Math.abs(allocatedMinutes-minutesUsed) +" minutes over your allowance of " + allocatedMinutes + " minutes");
+
+    }
+
+    public void getIdNumber() {
         System.out.println("What is your id of your phone bill?");
         this.id = scanner.nextInt();
     }
 
-    protected void getBaseCost(){
+    public void getBaseCost() {
         System.out.println("What is the base cost of your phone bill?");
         this.baseCost = scanner.nextInt();
     }
 
-    protected void getAllocatedMinutes(){
+    public void getAllocatedMinutes() {
         System.out.println("What is your number of allocated minutes?");
         this.allocatedMinutes = scanner.nextInt();
     }
 
-    protected void getMinutesUsed(){
+    public void getMinutesUsed() {
         System.out.println("How many minutes did you use");
         this.minutesUsed = scanner.nextInt();
     }
-
-
-
-    public PhoneBill (){
-        //this constructor needs to find out everything
-        getIdNumber();
-        getBaseCost();
-        getAllocatedMinutes();
-        getMinutesUsed();
-
-        //calculate total bill
-        totalBill = calculatePhoneBill();
-       // System.out.println("Total bill is "+totalBill);
-    }
-
-    public PhoneBill (int id){
-        //this constructor knows the id but needs to find everything else out
-        getBaseCost();
-        getAllocatedMinutes();
-        getMinutesUsed();
-
-        //calculate total bill
-        totalBill = calculatePhoneBill();
-        //System.out.println("Total bill is "+totalBill);
-
-    }
-
-    public PhoneBill (int id, int baseCost, int allocatedMinutes, int minutesUsed) {
-        //this constructor is given everything so just needs to calculate
-
-        //calculate total bill
-        totalBill = calculatePhoneBill();
-        System.out.println("Total bill is "+totalBill);
-
-    }
-
-    public double calculatePhoneBill(){
-        var amountOver = Math.abs((allocatedMinutes-minutesUsed)*tax);
-           // System.out.println("You spent an extra "+ amountOver + " in tax, due to being " + Math.abs(allocatedMinutes-minutesUsed) +" minutes over your allowance of " + allocatedMinutes + " minutes");
-            return baseCost+amountOver;
-        }
-    }
+}
 
