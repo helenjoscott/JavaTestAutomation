@@ -1,5 +1,6 @@
 package chapter6;
 
+
 import org.junit.jupiter.api.Test;
 
 class PhoneBillTestKnowEverything {
@@ -11,5 +12,6 @@ class PhoneBillTestKnowEverything {
         everythingKnown.calculate();
         // then
         // how do I get to the variables?
+
     }
 }
