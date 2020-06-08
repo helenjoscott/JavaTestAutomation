@@ -19,16 +19,13 @@ public class PhoneBillCalculator {
     Scanner scanner = new Scanner(System.in);
 
     public PhoneBillCalculator() {
-        this.name = name;
     }
 
     public PhoneBillCalculator(Double id) {
-        this.name = name;
         this.id = id;
     }
 
     public PhoneBillCalculator(Double id, Double baseCost, Double allocatedMinutes, Double minutesUsed) {
-        this.name = name;
         this.id = id;
         this.baseCost = baseCost;
         this.allocatedMinutes = allocatedMinutes;
@@ -59,9 +56,9 @@ public class PhoneBillCalculator {
         name = scanner.next();
     }
 
-    public void notifyUser() {
+    private void notifyUser() {
         // bill calculations
-        minOver = minutesUsed-allocatedMinutes;
+        minOver = minutesUsed - allocatedMinutes;
         taxCostOnMinOver = minOver * OVERAGE_TAX;
         finalBill = baseCost + taxCostOnMinOver;
 
