@@ -10,6 +10,10 @@ public class PhoneBill {
     private Double allocatedMinutes;
     private Double minutesUsed;
 
+    private double minOver;
+    private double taxCostOnMinOver;
+    private double finalBill;
+
     static double OVERAGE_TAX = 0.15;
 
     Scanner scanner = new Scanner(System.in);
@@ -31,69 +35,39 @@ public class PhoneBill {
         this.minutesUsed = minutesUsed;
     }
 
-    public void calculateWhenNothingKnown() {
-        inialiseWhenNothingKnown();
+    public void calculate() {
+        findOutName();
+        if (id == null) {
+            System.out.println(name + ", what is the ID of your phone bill?");
+            this.id = scanner.nextDouble();
+        }
+        if (baseCost == null) {
+            System.out.println(name + ", what is the base cost of your phone bill?");
+            this.baseCost = scanner.nextDouble();
+
+            System.out.println(name + ", What is your number of allocated minutes?");
+            this.allocatedMinutes = scanner.nextDouble();
+
+            System.out.println(name + ", How many minutes did you use");
+            this.minutesUsed = scanner.nextDouble();
+        }
         notifyUser();
     }
 
-    public void calculateWhenIDKnown() {
-        initialiseWhenIdKnown();
-        notifyUser();
-    }
-
-    public void caculateWhenEverythingKnown() {
-        findOutName();
-        initialiseWhenEverythingKnown();
-        notifyUser();
-    }
-
-
-    public void inialiseWhenNothingKnown() {
-        findOutName();
-        findOutID();
-        findOutCostAndMins();
-    }
-
-    public void initialiseWhenIdKnown() {
-        findOutName();
-        findOutCostAndMins();
-    }
-
-    private void findOutName(){
-        System.out.println("What is your name?");
-        name = scanner.next();
-    }
-
-    private void findOutID(){
-        System.out.println(name + ", what is the ID of your phone bill?");
-        this.id = scanner.nextDouble();
-    }
-
-    private void findOutCostAndMins(){
-        System.out.println(name + ", what is the base cost of your phone bill?");
-        this.baseCost = scanner.nextDouble();
-
-        System.out.println(name + ", What is your number of allocated minutes?");
-        this.allocatedMinutes = scanner.nextDouble();
-
-        System.out.println(name + ", How many minutes did you use");
-        this.minutesUsed = scanner.nextDouble();
-    }
-
-    public void initialiseWhenEverythingKnown() {
+    private void findOutName() {
         System.out.println("What is your name?");
         name = scanner.next();
     }
 
     public void notifyUser() {
-        //some local variables to help out with the sums
-        double minOver = minutesUsed - allocatedMinutes;
-        double taxOnMinOver = minOver * OVERAGE_TAX;
+        // bill calculations
+        minOver = minutesUsed-allocatedMinutes;
+        taxCostOnMinOver = minOver * OVERAGE_TAX;
+        finalBill = baseCost + taxCostOnMinOver;
 
         if (minutesUsed > allocatedMinutes) {
-            System.out.println(name + ", you used extra " + minOver + " minutes, which is " + taxOnMinOver + " in tax. Your final bill is " + (baseCost + taxOnMinOver) + ".");
+            System.out.println(name + ", you used extra " + minOver + " minutes, which is " + taxCostOnMinOver + " in tax. Your final bill is " + finalBill + ".");
         } else
             System.out.println(name + ", you were inside your minutes allowance. Your final bill is " + baseCost + ".");
     }
 }
-
