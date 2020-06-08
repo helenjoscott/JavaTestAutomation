@@ -42,32 +42,34 @@ public class PhoneBill {
     }
 
     public void caculateWhenEverythingKnown() {
+        findOutName();
         initialiseWhenEverythingKnown();
         notifyUser();
     }
 
 
     public void inialiseWhenNothingKnown() {
-        System.out.println("What is your name?");
-        name = scanner.next();
-
-        System.out.println(name + ", what is the ID of your phone bill?");
-        this.id = scanner.nextDouble();
-
-        System.out.println(name + ", what is the base cost of your phone bill?");
-        this.baseCost = scanner.nextDouble();
-
-        System.out.println(name + ", What is your number of allocated minutes?");
-        this.allocatedMinutes = scanner.nextDouble();
-
-        System.out.println(name + ", How many minutes did you use");
-        this.minutesUsed = scanner.nextDouble();
+        findOutName();
+        findOutID();
+        findOutCostAndMins();
     }
 
     public void initialiseWhenIdKnown() {
+        findOutName();
+        findOutCostAndMins();
+    }
+
+    private void findOutName(){
         System.out.println("What is your name?");
         name = scanner.next();
+    }
 
+    private void findOutID(){
+        System.out.println(name + ", what is the ID of your phone bill?");
+        this.id = scanner.nextDouble();
+    }
+
+    private void findOutCostAndMins(){
         System.out.println(name + ", what is the base cost of your phone bill?");
         this.baseCost = scanner.nextDouble();
 
