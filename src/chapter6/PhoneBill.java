@@ -4,57 +4,94 @@ import java.util.Scanner;
 
 public class PhoneBill {
 
-    private int id;
-    private double baseCost;
-    private double allocatedMinutes;
-    private double minutesUsed;
-    private double totalBill;
+    private String name;
+    private Double id;
+    private Double baseCost;
+    private Double allocatedMinutes;
+    private Double minutesUsed;
 
-    static double OVERAGE_PER_MIN_COST = 0.25;
     static double OVERAGE_TAX = 0.15;
 
     Scanner scanner = new Scanner(System.in);
 
     public PhoneBill() {
+        this.name = name;
     }
 
-    public PhoneBill(int id) {
-        this.id=id;
+    public PhoneBill(Double id) {
+        this.name = name;
+        this.id = id;
     }
 
-    public PhoneBill(int id, int baseCost, int allocatedMinutes, int minutesUsed) {
-        this.id=id;
-        this.baseCost=baseCost;
-        this.allocatedMinutes=allocatedMinutes;
-        this.minutesUsed=minutesUsed;
+    public PhoneBill(Double id, Double baseCost, Double allocatedMinutes, Double minutesUsed) {
+        this.name = name;
+        this.id = id;
+        this.baseCost = baseCost;
+        this.allocatedMinutes = allocatedMinutes;
+        this.minutesUsed = minutesUsed;
     }
 
-    public double calculatePhoneBill() {
-        var amountOver = Math.abs((allocatedMinutes - minutesUsed) * OVERAGE_TAX);
-        return baseCost + amountOver;
-
-        // System.out.println("You spent an extra "+ amountOver + " in tax, due to being " + Math.abs(allocatedMinutes-minutesUsed) +" minutes over your allowance of " + allocatedMinutes + " minutes");
-
+    public void calculateWhenNothingKnown() {
+        inialiseWhenNothingKnown();
+        notifyUser();
     }
 
-    public void getIdNumber() {
-        System.out.println("What is your id of your phone bill?");
-        this.id = scanner.nextInt();
+    public void calculateWhenIDKnown() {
+        initialiseWhenIdKnown();
+        notifyUser();
     }
 
-    public void getBaseCost() {
-        System.out.println("What is the base cost of your phone bill?");
-        this.baseCost = scanner.nextInt();
+    public void caculateWhenEverythingKnown() {
+        initialiseWhenEverythingKnown();
+        notifyUser();
     }
 
-    public void getAllocatedMinutes() {
-        System.out.println("What is your number of allocated minutes?");
-        this.allocatedMinutes = scanner.nextInt();
+
+    public void inialiseWhenNothingKnown() {
+        System.out.println("What is your name?");
+        name = scanner.next();
+
+        System.out.println(name + ", what is the ID of your phone bill?");
+        this.id = scanner.nextDouble();
+
+        System.out.println(name + ", what is the base cost of your phone bill?");
+        this.baseCost = scanner.nextDouble();
+
+        System.out.println(name + ", What is your number of allocated minutes?");
+        this.allocatedMinutes = scanner.nextDouble();
+
+        System.out.println(name + ", How many minutes did you use");
+        this.minutesUsed = scanner.nextDouble();
     }
 
-    public void getMinutesUsed() {
-        System.out.println("How many minutes did you use");
-        this.minutesUsed = scanner.nextInt();
+    public void initialiseWhenIdKnown() {
+        System.out.println("What is your name?");
+        name = scanner.next();
+
+        System.out.println(name + ", what is the base cost of your phone bill?");
+        this.baseCost = scanner.nextDouble();
+
+        System.out.println(name + ", What is your number of allocated minutes?");
+        this.allocatedMinutes = scanner.nextDouble();
+
+        System.out.println(name + ", How many minutes did you use");
+        this.minutesUsed = scanner.nextDouble();
+    }
+
+    public void initialiseWhenEverythingKnown() {
+        System.out.println("What is your name?");
+        name = scanner.next();
+    }
+
+    public void notifyUser() {
+        //some local variables to help out with the sums
+        double minOver = minutesUsed - allocatedMinutes;
+        double taxOnMinOver = minOver * OVERAGE_TAX;
+
+        if (minutesUsed > allocatedMinutes) {
+            System.out.println(name + ", you used extra " + minOver + " minutes, which is " + taxOnMinOver + " in tax. Your final bill is " + (baseCost + taxOnMinOver) + ".");
+        } else
+            System.out.println(name + ", you were inside your minutes allowance. Your final bill is " + baseCost + ".");
     }
 }
 
