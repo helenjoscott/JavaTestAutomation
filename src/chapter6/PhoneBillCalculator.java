@@ -13,7 +13,6 @@ public class PhoneBillCalculator {
     private double minOver;
     private double taxCostOnMinOver;
     private double finalBill;
-
     static double OVERAGE_TAX = 0.15;
 
     Scanner scanner = new Scanner(System.in);
@@ -33,7 +32,7 @@ public class PhoneBillCalculator {
     }
 
     public void calculate() {
-        findOutName();
+        //findOutName();
         if (id == null) {
             System.out.println(name + ", what is the ID of your phone bill?");
             this.id = scanner.nextDouble();
@@ -66,5 +65,17 @@ public class PhoneBillCalculator {
             System.out.println(name + ", you used extra " + minOver + " minutes, which is " + taxCostOnMinOver + " in tax. Your final bill is " + finalBill + ".");
         } else
             System.out.println(name + ", you were inside your minutes allowance. Your final bill is " + baseCost + ".");
+    }
+
+    public double getMinOver() {
+        return minOver;
+    }
+
+    public double getTaxCostOnMinOver() {
+        return taxCostOnMinOver;
+    }
+
+    public double getFinalBill() {
+        return finalBill;
     }
 }
