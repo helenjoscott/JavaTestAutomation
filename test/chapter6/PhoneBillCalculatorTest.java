@@ -1,10 +1,11 @@
 package chapter6;
 
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class PhoneBillTestKnowEverything {
+import static org.junit.jupiter.api.Assertions.*;
+
+class PhoneBillCalculatorTest {
     @Test
     void givenSpecificParameters() {
         // given
