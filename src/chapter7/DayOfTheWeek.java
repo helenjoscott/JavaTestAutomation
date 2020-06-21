@@ -1,7 +1,7 @@
 package chapter7;
 
 public class DayOfTheWeek {
-    private String[] dayOfWeek = new String[10];
+    private String[] dayOfWeek = new String[7];
 
     public String getDayOfWeek(int userInput) {
         dayOfWeek[0] = ("Monday");

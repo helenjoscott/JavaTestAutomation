@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class ChooseDayOfWeek {
 
+
     public static void main(String[] args) {
         askUserForDay();
     }
