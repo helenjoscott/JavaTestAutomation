@@ -9,24 +9,20 @@ public class PrintFinalScores {
     private Integer valMakeupGrade;
 
     public static void main(String[] args) {
-        System.out.println("Here are the student's final test scores");
-        Map originalGrades = TestResults.getOriginalGrades();
-        Map makeupGrades = TestResults.getMakeUpGrades();
+        Map<String, Integer> originalGrades = TestResults.getOriginalGrades();
+        Map<String, Integer> makeupGrades = TestResults.getMakeUpGrades();
 
         Iterator originalIterator = originalGrades.keySet().iterator();
-        Iterator makeupIterator = makeupGrades.keySet().iterator();
 
         while (originalIterator.hasNext()) {
             Object key = originalIterator.next();
             Integer originalValue = (Integer) originalGrades.get(key);
             Integer makeUpValue = (Integer) makeupGrades.get(key);
 
-            if (originalValue > makeUpValue) {
-                System.out.println(key +" 's score is " + originalValue);
-            } else
+            if (originalValue < makeUpValue) {
                 // put new value in the originalGrade hashmap
-                originalGrades.put(key,makeUpValue);
-                System.out.println(key +" 's score is " + makeUpValue);
+                originalGrades.put((String) key, makeUpValue);
+            }
         }
         System.out.println("New values in the original Hashmap are: " + originalGrades);
     }
