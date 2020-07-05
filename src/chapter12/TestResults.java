@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class TestResults {
 
-    public static Map getOriginalGrades(){
+    public static Map <String, Integer> getOriginalGrades(){
 
-        Map <String, Integer> grades = new HashMap();
+        Map <String, Integer> grades = new HashMap<>();
         grades.put("Angie", 24);
         grades.put("Dave", 32);
         grades.put("Lisi", 80);
@@ -23,9 +23,9 @@ public class TestResults {
         return grades;
     }
 
-    public static Map getMakeUpGrades(){
+    public static Map<String, Integer> getMakeUpGrades(){
 
-        Map <String, Integer> grades = new HashMap();
+        Map <String, Integer> grades = new HashMap<>();
         grades.put("Angie", 97);
         grades.put("Dave", 82);
         grades.put("Lisi", 76);
